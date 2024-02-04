@@ -1,4 +1,4 @@
-; SPDX-FileCopyrightText: 2023 Zeal 8-bit Computer <contact@zeal8bit.com>
+; SPDX-FileCopyrightText: 2023-2024 Zeal 8-bit Computer <contact@zeal8bit.com>
 ;
 ; SPDX-License-Identifier: CC0-1.0
 
@@ -156,7 +156,6 @@ write_sector:
     call wait_for_ready
     or a
     jp nz, cf_error_occurred
-    S_WRITE3(DEV_STDOUT, _write_msg, _write_msg_end - _write_msg)
     ret
 
 

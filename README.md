@@ -1,7 +1,7 @@
 ## CompactFlash adapter for Zeal 8-bit Computer
 
 <center>
-    <img src="img/compactflash.png" alt="3D Preview" />
+    <img src="img/compactflash.jpg" alt="Preview" />
 </center>
 
 ## This repository is part of [this Youtube video](https://youtu.be/B_ADYc3EVzc), check it for more information and explanation about this project.
@@ -10,12 +10,20 @@ The goal of this project is to create an adapter for connecting CompactFlash car
 
 This repository includes:
 
-* An example/driver written in Z80 assembly to communicate with the adapter. It will read the first sector of the card and show the resulting bytes on the screen
-* A Kicad (v6) project for the schematics and PCB board
+* An example/driver written in Z80 assembly to communicate with the adapter. It will read the first sector (512 bytes) of the card, show the first two 16-byte line, invert them and write the result back in the CompactFlash. Both 16-byte lines will be printed on screen.
+* A Kicad project for the schematics and PCB board
 
-## IMPORTANT: About the connector
+The output of the example on Zeal 8-bit OS should look like this:
 
-As described in [the Youtube video](https://youtu.be/B_ADYc3EVzc), the CompactFlash connector needs to accept cards inserted bottom up. This is because the footprint of the connector is mirrored on the PCB.
+<center>
+    <img src="img/output.png" alt="Output" />
+</center>
+
+## About the connector
+
+<s>As described in [the Youtube video](https://youtu.be/B_ADYc3EVzc), the CompactFlash connector needs to accept cards inserted bottom up. This is because the footprint of the connector is mirrored on the PCB.</s>
+
+**Update v1.0.0:** the PCB and its connector have been fixed, the card can be connected upside up.
 
 ## Requirements
 
