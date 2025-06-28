@@ -1,0 +1,44 @@
+Name      ZealExtCompactFlash;
+Partno    ;
+Rev       01;
+Date      18/02/2022;
+Designer  Zeal8bit;
+Company   Zeal8Bit;
+Location  None;
+Assembly  None;
+Device    G16V8;
+
+
+/** Inputs **/
+Pin 1 = CLK_PIN;
+Pin 2 = ADDR7;
+Pin 3 = ADDR6;
+Pin 4 = !IORQ;
+Pin 5 = ADDR5;
+Pin 6 = ADDR4;
+Pin 7 = ADDR3;
+Pin 8 = !RD;
+Pin 9 = !WR;
+
+/** RD and WR shall be delayed by one tick **/
+Pin 17 = !RD_O;
+Pin 18 = !WR_O;
+Pin 16 = !RD_TMP;
+Pin 15 = !WR_TMP;
+Pin 19 = !CS; // Combinatorial CS
+
+/** Outputs **/
+Pin 14 = !CF_CS; // Delayed CS, intermediate
+
+/** Rules **/
+CS = IORQ & !ADDR7 & ADDR6 & ADDR5 & ADDR4;
+
+CF_CS.d = CS;
+
+RD_O = CF_CS & RD & CS;
+WR_O = CF_CS & WR & CS;
+
+// Works but signals are de-asserted 1/2 cycle after IOREQ and RD/WR go high
+// CF_CS.d = CS;
+// RD_O.d = CF_CS & RD;
+// WR_O.d = CF_CS & WR;
