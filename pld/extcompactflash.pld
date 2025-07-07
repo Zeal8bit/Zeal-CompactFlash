@@ -25,7 +25,7 @@ Pin 17 = !RD_O;
 Pin 18 = !WR_O;
 Pin 16 = !RD_TMP;
 Pin 15 = !WR_TMP;
-Pin 19 = !CS; // Combinatorial CS
+Pin 19 = !CS2; // Combinatorial CS
 
 /** Outputs **/
 Pin 14 = !CF_CS; // Delayed CS, intermediate
@@ -34,6 +34,8 @@ Pin 14 = !CF_CS; // Delayed CS, intermediate
 CS = IORQ & !ADDR7 & ADDR6 & ADDR5 & ADDR4;
 
 CF_CS.d = CS;
+
+CS2 = CS # CF_CS;
 
 RD_O = CF_CS & RD & CS;
 WR_O = CF_CS & WR & CS;
